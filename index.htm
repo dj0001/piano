@@ -6,7 +6,7 @@
 <meta content='width=device-width, initial-scale=1' name='viewport' />
 <meta name="theme-color" content="#5ac1f2">
 <link rel='manifest' href='manifest.json'>
-<link rel="icon" type="image/png" sizes="256x256" href="piano_256.png">
+<link rel="icon" type="image/png" sizes="256x256" href="images/piano_256.png">
 <style>
 .box {display:flex; width:636px;height:auto;border:0px; padding-bottom:3px}
 .box div {width:41px;height:100px; border:1px solid black;margin-right:1px; text-align: center; border-radius: 0px 0px 3px 3px; box-shadow: 0px 2px 2px -1px #808080}
@@ -43,7 +43,7 @@ var rel=0.2, bpm=150, inst=1, tmove=false, guitar=true  //edit here
 
 if(typeof AudioContext!=="undefined") musik = new AudioContext(); else alert("browser don't support Audio api")
 
-var osci={}, map={}, gainN={}, song=[], notes={}, mid={}, oct=1, lyr=0, dl="", ts, t, abcj, out, port=1, s=0, lastPt={}; if(navigator.language=="de") map={Y:"Z",Z:"Y"}; map["¼"]="Q"
+var osci={}, map={}, gainN={}, song=[], notes={}, mid={}, oct=1, lyr=0, dl="", ts, t, abcj, out, port=1, s=0, lastPt={}; if(navigator.language=="de") map={Y:"Z",Z:"Y"}; map["Â¼"]="Q"
 
 var y=document.querySelectorAll(".box [id]"), hasT = "ontouchstart" in window; if(hasT) {document.querySelector(".box").classList.add("hasT"); document.querySelector("header").style.display=""}
 for (var j=0; j<y.length; j++) {
@@ -59,7 +59,7 @@ else if(est==0) co()  //0 or load-downl= octave(4)
 else if(est==".") {dl=dl.replace(/\^?.$/,""); msong(dl)}  //Del
 else if(est=="-") {if(abcj) {abcj.ABCJS.renderAbc("n","X:1\nK:C\n"+dl);abcj.ABCJS.renderMidi("n2","X:1\nK:C\n"+dl)}  //Ins render notes
  else {abcj=window.open("", "abcjs");abcj.document.write('<script src="https://rawgit.com/paulrosen/abcjs/master/bin/abcjs_basic_1.10-min.js"><\/script><div id="n"></div><div id="n2"></div><script>ABCJS.renderAbc("n","'+dl+'")<\/script>')} }
-else if(est=="Û") {if(out) port=1*!port}  //ß=port (chrome)
+else if(est=="Ã›") {if(out) port=1*!port}  //ÃŸ=port (chrome)
 else if(est=="O") {if(!s || song.slice(0,s).join()==song.slice(-s).join()) s++; V[0].playst(song.slice(0,s))}  //o=play simon
  else if(!e.repeat) {ts=undefined; var tmp=map[est]||est, tmp2=(gainN[tmp])?document.getElementById(tmp).textContent||document.getElementById(tmp).getAttribute("data-k"):"z"; song.push(tmp2); playn(tmp);
   document.title="Piano "+song.slice(-8).join("");if(song.length-1&&!((song.length-1)%8)) dl+="| ";dl+=tmp2 }
